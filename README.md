@@ -1,5 +1,4 @@
 ## Code for "A model for the fragmentation kinetics of crumpled thin sheets"
-Please contact jandrejevic@g.harvard.edu for access to data needed for processing and analysis.
 
 #### Imports
 - ```math_imports.py``` - Import special math functions and define custom distribution classes.
