@@ -36,16 +36,16 @@ Areas_w, Per_w, Lens_w = pickle.load(open('facet_watershed_rev.p','rb'))
 Shapes_w, Means_w, Times_w = pickle.load(open('props_watershed.p','rb'))
 
 
-fig1, axes1, cbax1 = fig_with_cbar((8,7),1)
-fig2, axes2, cbax2 = fig_with_cbar((8,7),1)
-fig3, axes3, cbax3 = fig_with_cbar((8,7),1)
-fig4, axes4, cbax4 = fig_with_cbar((8,7),1)
+fig1, axes1, cbax1 = fig_with_cbar((12,8),1)
+fig2, axes2, cbax2 = fig_with_cbar((12,8),1)
+fig3, axes3, cbax3 = fig_with_cbar((12,8),1)
+fig4, axes4, cbax4 = fig_with_cbar((12,8),1)
 ax1 = axes1[0]; ax2 = axes2[0]; ax3 = axes3[0]; ax4 = axes4[0]
 x = np.linspace(0,120,100)
-ax1.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=3)
-ax2.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=3)
-ax3.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=3)
-ax4.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=3)
+ax1.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=5)
+ax2.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=5)
+ax3.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=5)
+ax4.plot(x, x, linestyle='dashed', color='k', alpha=0.5, lw=5)
 
 for i,(exp,delta) in enumerate(zip(Exps,Deltas)):
     # watershed
@@ -54,10 +54,10 @@ for i,(exp,delta) in enumerate(zip(Exps,Deltas)):
         tt = Times_w[exp][t]; a = Shapes_w[exp][t]
         if t<len(Areas_w[exp])-1:
             per_1 = (np.sum(Per_w[exp][t+1])-4*dim)/2./dim
-            ax1.scatter((per_1-per)*(1-delta), dl_empir(t+1,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=80, lw=1, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
-            ax3.scatter((per_1-per)*(1-delta), dl_model(a,tt,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=80, lw=1, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
-        ax2.scatter(per*(1-delta), l_empir(t+1,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=80, lw=1, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
-        ax4.scatter(per*(1-delta), l_model(t+1,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=80, lw=1, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
+            ax1.scatter((per_1-per)*(1-delta), dl_empir(t+1,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=150, lw=0, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
+            ax3.scatter((per_1-per)*(1-delta), dl_model(a,tt,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=150, lw=0, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
+        ax2.scatter(per*(1-delta), l_empir(t+1,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=150, lw=0, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
+        ax4.scatter(per*(1-delta), l_model(t+1,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], marker='o', s=150, lw=0, facecolor=list(cmap(cnorm(delta)))[:-1]+[0.3], zorder=10)
             
     # manual
     for t in range(len(Areas[exp])):
@@ -67,10 +67,10 @@ for i,(exp,delta) in enumerate(zip(Exps,Deltas)):
             if t<len(Areas[exp])-1 and ts[i][t]+1 == ts[i][t+1]:
                 per_1 = (np.sum(Per[exp][t+1])-4*dim)/2./dim
                 #print(exp, ts[i][t], (per_1-per)*(1-delta), dl_empir(ts[i][t],delta), dl_model(a,tt,delta))
-                ax1.scatter((per_1-per)*(1-delta), dl_empir(ts[i][t],delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=150, lw=4, facecolor='w', zorder=20)
-                ax3.scatter((per_1-per)*(1-delta), dl_model(a,tt,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=150, lw=4, facecolor='w', zorder=20)
-            ax2.scatter(per*(1-delta), l_empir(ts[i][t],delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=150, lw=4, facecolor='w', zorder=20)
-            ax4.scatter(per*(1-delta), l_model(ts[i][t],delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=150, lw=4, facecolor='w', zorder=20)
+                ax1.scatter((per_1-per)*(1-delta), dl_empir(ts[i][t],delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=200, lw=6, facecolor='w', zorder=20)
+                ax3.scatter((per_1-per)*(1-delta), dl_model(a,tt,delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=200, lw=6, facecolor='w', zorder=20)
+            ax2.scatter(per*(1-delta), l_empir(ts[i][t],delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=200, lw=6, facecolor='w', zorder=20)
+            ax4.scatter(per*(1-delta), l_model(ts[i][t],delta), edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.9], marker=markers[t], s=200, lw=6, facecolor='w', zorder=20)
        
 ax1.set_xscale('log'); ax1.set_yscale('log')
 ax3.set_xscale('log'); ax3.set_yscale('log')
@@ -86,4 +86,12 @@ set_cbar(fig1, cbax1, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], majo
 set_cbar(fig2, cbax2, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major)
 set_cbar(fig3, cbax3, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major)
 set_cbar(fig4, cbax4, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major)
+fig1.tight_layout()
+fig2.tight_layout()
+fig3.tight_layout()
+fig4.tight_layout()
+fig1.savefig('vector_images/dl_empir_vs_dl_meas.svg', format='svg', dpi=1200)
+fig2.savefig('vector_images/l_empir_vs_l_meas.svg', format='svg', dpi=1200)
+fig3.savefig('vector_images/dl_model_vs_dl_meas.svg', format='svg', dpi=1200)
+fig4.savefig('vector_images/l_model_vs_l_meas.svg', format='svg', dpi=1200)
 plt.show()

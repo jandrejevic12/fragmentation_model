@@ -21,7 +21,7 @@ def get_facets(exp, ts):
             border[:-7,:] = border[7:,:]
         else:
             f = "labeled_data/Exp"+str(exp)+"/D"+str(t)+".png"
-        im = imread(f, as_grey=True)
+        im = imread(f, as_gray=True)
         labels = label(im.astype(np.int), connectivity=2)
         labels = inflate(labels, border)
         print(exp,t,'filter complete!')
@@ -71,11 +71,13 @@ for dt in [[1,2],[2,3]]:
         Areas_rx, Areas_fxy = get_fragments(Facets, Maps, Areas, dt[0])
         
         # rx plot
-        fig, axes, cbax = fig_with_cbar((6,6), 1)
+        fig, axes, cbax = fig_with_cbar((8.3,7), 1)
         ax = axes[0]
-        h = np.histogram(Areas_rx,bins)[0]
-        ht = np.histogram(Areas[dt[0]]/float(dim*dim),bins)[0]
-        hs = h/ht.astype(np.float)
+        h = np.histogram(Areas_rx,bins)[0] # counts of areas which fragmented per bin
+        ht = np.histogram(Areas[dt[0]]/float(dim*dim),bins)[0] # previous counts in each bin - the number of "trials"
+        hs = h/ht.astype(np.float) # fraction of facets which fragmented
+        # variance in the proportion of successes for n trials is p*(1-p)/n
+        # https://www.researchgate.net/post/Is_the_formula_of_variance_for_a_binomial_distribution_wrong
         var = hs*(1-hs)/ht
         ax.scatter(sl, hs, zorder=10, marker='o', lw=5, s=150, edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.6], facecolor='w', label='$n='+str(ts[0])+'$')
         ax.errorbar(sl, hs, yerr=np.sqrt(var), zorder=9, color=list(cmap(cnorm(delta)))[:-1]+[0.6], lw=0, elinewidth=5, alpha=0.6)
@@ -85,12 +87,13 @@ for dt in [[1,2],[2,3]]:
         ax.set_yscale('log',basey=10)
         ax.set_ylim(3e-3,3e0)
         ax.set_xlim(3e-6,3e0)
-        set_axis_labels(ax, "$x$", "$r(x)\Delta{t}$", major, xticks=[1e-4, 1e-2, 1e0], yticks=[1e-2, 1e-1, 1e0])
+        set_axis_labels(ax, "$x$", "$r(x)\\Delta{t}$", major, xticks=[1e-4, 1e-2, 1e0], yticks=[1e-2, 1e-1, 1e0])
         set_cbar(fig, cbax, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major) 
-        fig.savefig("figures/rx_"+str(exp)+"_"+str(dt[0])+".png",dpi='figure', bbox_inches='tight')
+        fig.tight_layout()
+        plt.savefig("vector_images/rx_"+str(exp)+"_"+str(dt[0])+".svg", format='svg', dpi=1200)
 
         # fxy plot
-        fig, axes, cbax = fig_with_cbar((6,6), 1)
+        fig, axes, cbax = fig_with_cbar((8.3,7), 1)
         ax = axes[0]
         h = np.histogram(Areas_fxy,bins)[0]
         hs = h/ds/np.sum(h)
@@ -108,6 +111,7 @@ for dt in [[1,2],[2,3]]:
         set_text(ax, 7e-4, 4e3,"$\\beta=%.2f$"%(np.round(coeffs[0],2)), minor)
         set_axis_labels(ax, "$x/y$", "$\\rho(x/y)$", major, xticks=[1e-4, 1e-2, 1e0], yticks=[1e0, 1e2, 1e4])
         set_cbar(fig, cbax, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major)
-        fig.savefig("figures/fxy_"+str(exp)+"_"+str(dt[0])+".png",dpi='figure', bbox_inches='tight')
+        fig.tight_layout()
+        plt.savefig("vector_images/fxy_"+str(exp)+"_"+str(dt[0])+".svg", format='svg', dpi=1200)
 
 

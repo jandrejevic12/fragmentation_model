@@ -10,7 +10,7 @@ ts = [[1,2,3,24],[1,2,3,24],[1,2,3,3],[1,2,3,24],[1,2,3,3],[1,2,3,3],[1,2,3,3]]
 Exps = [45, 43, 37, 41, 29, 28, 39]
 Deltas = [0.63,0.45,0.36,0.27,0.18,0.09,0.045]
 
-data_prefix = '/scratch/shared/Crumpluch/'
+data_prefix = 'raw_data/'
 matdir = 'full_win24_20_10'
 
 # histogram plotting
