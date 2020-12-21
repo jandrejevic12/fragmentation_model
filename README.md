@@ -1,4 +1,5 @@
 ## Supporting code for "A model for the fragmentation kinetics of crumpled thin sheets"
+Jovana Andrejevic, Lisa M. Lee, Shmuel M. Rubinstein, and Chris H. Rycroft
 [![DOI](https://zenodo.org/badge/314614182.svg)](https://zenodo.org/badge/latestdoi/314614182)
 
 #### Imports
