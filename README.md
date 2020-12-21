@@ -1,4 +1,5 @@
-## Code for "A model for the fragmentation kinetics of crumpled thin sheets"
+## Supporting code for "A model for the fragmentation kinetics of crumpled thin sheets"
+[![DOI](https://zenodo.org/badge/314614182.svg)](https://zenodo.org/badge/latestdoi/314614182)
 
 #### Imports
 - ```math_imports.py``` - Import special math functions and define custom distribution classes.
