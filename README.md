@@ -5,7 +5,8 @@ Jovana Andrejevic, Lisa M. Lee, Shmuel M. Rubinstein, and Chris H. Rycroft
 
 #### Requirements
 Please refer to ```requirements.txt``` for the Python version and package versions used.
-Linking to [![LAPACK](http://www.netlib.org/lapack/)](LAPACK) libraries is needed for running the simulation test written in C++.
+
+Linking to [LAPACK](http://www.netlib.org/lapack/) libraries is needed for running the simulation test written in C++.
 
 #### Imports
 - ```math_imports.py``` - Import special math functions and define custom distribution classes.
