@@ -1,7 +1,6 @@
 from math_imports import *
 from plot_imports import *
 from setup_imports import *
-from facet_utils import load_data, setup_dir
 
 setup_dir(imdir)
 rw_inst = rw_gamma(a=-np.inf, name="rw_fold")

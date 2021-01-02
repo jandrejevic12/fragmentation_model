@@ -2,26 +2,9 @@ from math_imports import *
 from image_imports import *
 from plot_imports import *
 from setup_imports import *
-import os
-import hashlib, hmac, pickle
 
 seed = 0
 cmap = get_cmap(matplotlib.cm.get_cmap('twilight'), 0.1, 0.9)
-
-def load_data(filename):
-    digest, pickled = pickle.load(open(filename+'.p','rb'))
-    key = bytes(filename, 'utf-8')
-    # confirm data integrity
-    new_digest = hmac.new(key, pickled, hashlib.sha256).hexdigest()
-    if digest == new_digest:
-        print("Data signature matches; data loaded.")
-        return pickle.loads(pickled)
-    else:
-        print("Data signature does not match; data not loaded.")
-
-def setup_dir(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
 
 def inflate(labels, border, maxiter=24):
     for iteration in range(maxiter):

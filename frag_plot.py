@@ -1,7 +1,6 @@
 from plot_imports import *
 from math_imports import *
 from setup_imports import *
-from facet_utils import setup_dir
 minor = 32; major = 36
 
 setup_dir(imdir)

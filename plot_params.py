@@ -1,7 +1,6 @@
 from math_imports import *
 from plot_imports import *
 from setup_imports import *
-from facet_utils import load_data, setup_dir
 
 setup_dir(imdir)
 cmap = matplotlib.cm.get_cmap("plasma")

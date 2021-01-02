@@ -1,4 +1,21 @@
 import numpy as np
+import os
+import hashlib, hmac, pickle
+
+def load_data(filename):
+    digest, pickled = pickle.load(open(filename+'.p','rb'))
+    key = bytes(filename, 'utf-8')
+    # confirm data integrity
+    new_digest = hmac.new(key, pickled, hashlib.sha256).hexdigest()
+    if digest == new_digest:
+        print("Data signature matches; data loaded.")
+        return pickle.loads(pickled)
+    else:
+        print("Data signature does not match; data not loaded.")
+
+def setup_dir(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 # constant parameters
 N = 3000 # image size
