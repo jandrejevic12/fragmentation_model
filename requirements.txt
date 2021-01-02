@@ -1,0 +1,13 @@
+python==3.7.7
+
+# math imports
+numpy==1.19.1
+scipy==1.5.0
+mpmath==1.1.0
+
+# plot imports
+matplotlib==3.2.2
+seaborn==0.11.0
+
+# image imports
+scikit-image==0.16.2

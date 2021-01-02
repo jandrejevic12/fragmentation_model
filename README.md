@@ -3,6 +3,10 @@ Jovana Andrejevic, Lisa M. Lee, Shmuel M. Rubinstein, and Chris H. Rycroft
 
 [![DOI](https://zenodo.org/badge/314614182.svg)](https://zenodo.org/badge/latestdoi/314614182)
 
+#### Requirements
+Please refer to ```requirements.txt``` for the Python version and package versions used.
+Linking to [![LAPACK](http://www.netlib.org/lapack/)](LAPACK) libraries is needed for running the simulation test written in C++.
+
 #### Imports
 - ```math_imports.py``` - Import special math functions and define custom distribution classes.
 - ```plot_imports.py``` - Import plotting libraries and define custom plotting setup.
