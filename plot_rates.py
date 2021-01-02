@@ -2,7 +2,9 @@ from plot_imports import *
 from math_imports import *
 from setup_imports import *
 from image_imports import *
-from facet_utils import inflate
+from facet_utils import inflate, setup_dir
+
+setup_dir(imdir)
 
 def get_facets(exp, ts):
     Facets = {}
@@ -77,12 +79,10 @@ for dt in [[1,2],[2,3]]:
         ht = np.histogram(Areas[dt[0]]/float(dim*dim),bins)[0] # previous counts in each bin - the number of "trials"
         hs = h/ht.astype(np.float) # fraction of facets which fragmented
         # variance in the proportion of successes for n trials is p*(1-p)/n
-        # https://www.researchgate.net/post/Is_the_formula_of_variance_for_a_binomial_distribution_wrong
         var = hs*(1-hs)/ht
         ax.scatter(sl, hs, zorder=10, marker='o', lw=5, s=150, edgecolor=list(cmap(cnorm(delta)))[:-1]+[0.6], facecolor='w', label='$n='+str(ts[0])+'$')
         ax.errorbar(sl, hs, yerr=np.sqrt(var), zorder=9, color=list(cmap(cnorm(delta)))[:-1]+[0.6], lw=0, elinewidth=5, alpha=0.6)
         xx = np.logspace(-7,1,500)
-        #ax.plot(xx, 1e1*np.sqrt(xx), linestyle='dashed', color='k', alpha=0.5, lw=5)
         ax.set_xscale('log',basex=10)
         ax.set_yscale('log',basey=10)
         ax.set_ylim(3e-3,3e0)
@@ -90,7 +90,7 @@ for dt in [[1,2],[2,3]]:
         set_axis_labels(ax, "$x$", "$r(x)\\Delta{t}$", major, xticks=[1e-4, 1e-2, 1e0], yticks=[1e-2, 1e-1, 1e0])
         set_cbar(fig, cbax, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major) 
         fig.tight_layout()
-        plt.savefig("vector_images/rx_"+str(exp)+"_"+str(dt[0])+".svg", format='svg', dpi=1200)
+        plt.savefig(imdir+"/rx_"+str(exp)+"_"+str(dt[0])+".svg", format='svg', dpi=1200)
 
         # fxy plot
         fig, axes, cbax = fig_with_cbar((8.3,7), 1)
@@ -112,6 +112,4 @@ for dt in [[1,2],[2,3]]:
         set_axis_labels(ax, "$x/y$", "$\\rho(x/y)$", major, xticks=[1e-4, 1e-2, 1e0], yticks=[1e0, 1e2, 1e4])
         set_cbar(fig, cbax, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major)
         fig.tight_layout()
-        plt.savefig("vector_images/fxy_"+str(exp)+"_"+str(dt[0])+".svg", format='svg', dpi=1200)
-
-
+        plt.savefig(imdir+"/fxy_"+str(exp)+"_"+str(dt[0])+".svg", format='svg', dpi=1200)

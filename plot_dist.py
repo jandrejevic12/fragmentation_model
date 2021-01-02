@@ -1,8 +1,9 @@
 from math_imports import *
 from plot_imports import *
 from setup_imports import *
-import pickle
+from facet_utils import load_data, setup_dir
 
+setup_dir(imdir)
 sc_inst = scaling_dist(a=0.0, name='scaling_dist')
 
 def at_fun(s, t0):
@@ -20,8 +21,8 @@ def at_fun(s, t0):
     return a, t
 
 # Plot an example from manual data
-Areas, Per, Lens = pickle.load(open('facet.p','rb'))
-Shapes, Means, Times = pickle.load(open('props.p','rb'))
+Areas, Per, Lens = load_data('facet')
+Shapes, Means, Times = load_data('props')
 exp = 41
 delta = 0.27
 t = 4
@@ -49,12 +50,12 @@ ax.set_xlim(8e-6,1e3)
 #set_legend(ax, 'lower left', minor)
 set_axis_labels(ax, "$\\xi$", "$\\phi(\\xi)$", major, xticks=[1e-3, 1e0, 1e3], yticks=[1e-6, 1e-3, 1e0, 1e3])
 fig.tight_layout()
-plt.savefig('vector_images/dist_plot_manual_'+str(exp)+'_'+str(t)+'.svg', format='svg', dpi=1200)
+plt.savefig(imdir+'/dist_plot_manual_'+str(exp)+'_'+str(t)+'.svg', format='svg', dpi=1200)
 plt.show()
 
 # Plot an example from watershed data
-Areas, Per, Lens = pickle.load(open('facet_watershed_rev.p','rb'))
-Shapes, Means, Times = pickle.load(open('props_watershed.p','rb'))
+Areas, Per, Lens = load_data('facet_watershed')
+Shapes, Means, Times = load_data('props_watershed')
 exp = 41
 delta = 0.27
 t = 24
@@ -84,5 +85,5 @@ ax.set_xlim(8e-6,1e3)
 set_legend(ax, 'lower left', minor)
 set_axis_labels(ax, "$\\xi$", "$\\phi(\\xi)$", major, xticks=[1e-3, 1e0, 1e3], yticks=[1e-6, 1e-3, 1e0, 1e3])
 fig.tight_layout()
-plt.savefig('vector_images/dist_plot_watershed_'+str(exp)+'_'+str(t)+'.svg', format='svg', dpi=1200)
+plt.savefig(imdir+'/dist_plot_watershed_'+str(exp)+'_'+str(t)+'.svg', format='svg', dpi=1200)
 plt.show()

@@ -12,6 +12,7 @@ Deltas = [0.63,0.45,0.36,0.27,0.18,0.09,0.045]
 
 data_prefix = 'raw_data/'
 matdir = 'full_win24_20_10'
+imdir = 'vector_images'
 
 # histogram plotting
 a = 1.55

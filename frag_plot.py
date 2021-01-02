@@ -1,6 +1,10 @@
 from plot_imports import *
 from math_imports import *
+from setup_imports import *
+from facet_utils import setup_dir
 minor = 32; major = 36
+
+setup_dir(imdir)
 
 def scaling_fun(x,a):
     z = a*(a+1)*x
@@ -53,10 +57,10 @@ for i,ax in enumerate(axes):
     set_text(ax2, 2, 3e2, "$t="+str(int(t[i]))+"$", minor)
     fig2.subplots_adjust(hspace=0.35,wspace=0.05)
     fig2.tight_layout()
-    fig2.savefig('vector_images/num_frag_'+str(i+1)+'.svg', format='svg', dpi=1200)
+    fig2.savefig(imdir+'/num_frag_'+str(i+1)+'.svg', format='svg', dpi=1200)
 
 fig.tight_layout()
-fig.savefig('vector_images/num_frag_tot.svg', format='svg', dpi=1200)
+fig.savefig(imdir+'/num_frag_tot.svg', format='svg', dpi=1200)
 
 # second plot: s(t)
 t = contents[1:,0]
@@ -74,5 +78,5 @@ ax.set_ylim(8e-6,2)
 set_axis_labels(ax, "$t$", "$s(t)$", major, xticks=[1e0, 1e1, 1e2], yticks=[1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1e0])
 set_legend(ax, 'upper right', minor)
 fig.tight_layout()
-fig.savefig('vector_images/num_s_vs_t.svg', format='svg', dpi=1200)
+fig.savefig(imdir+'/num_s_vs_t.svg', format='svg', dpi=1200)
 plt.show()

@@ -1,8 +1,9 @@
 from math_imports import *
 from plot_imports import *
 from setup_imports import *
-import pickle
+from facet_utils import load_data, setup_dir
 
+setup_dir(imdir)
 rw_inst = rw_gamma(a=-np.inf, name="rw_fold")
 
 def w(delta):
@@ -30,10 +31,10 @@ def l_empir(n,delta):
 cmap = matplotlib.cm.get_cmap("plasma")
 cnorm = matplotlib.colors.Normalize(vmin=0, vmax=1)
 markers = ['o','s','^','v']
-Areas, Per, Lens = pickle.load(open('facet.p','rb'))
-Shapes, Means, Times = pickle.load(open('props.p','rb'))
-Areas_w, Per_w, Lens_w = pickle.load(open('facet_watershed_rev.p','rb'))
-Shapes_w, Means_w, Times_w = pickle.load(open('props_watershed.p','rb'))
+Areas, Per, Lens = load_data('facet')
+Shapes, Means, Times = load_data('props')
+Areas_w, Per_w, Lens_w = load_data('facet_watershed')
+Shapes_w, Means_w, Times_w = load_data('props_watershed')
 
 
 fig1, axes1, cbax1 = fig_with_cbar((12,8),1)
@@ -90,8 +91,8 @@ fig1.tight_layout()
 fig2.tight_layout()
 fig3.tight_layout()
 fig4.tight_layout()
-fig1.savefig('vector_images/dl_empir_vs_dl_meas.svg', format='svg', dpi=1200)
-fig2.savefig('vector_images/l_empir_vs_l_meas.svg', format='svg', dpi=1200)
-fig3.savefig('vector_images/dl_model_vs_dl_meas.svg', format='svg', dpi=1200)
-fig4.savefig('vector_images/l_model_vs_l_meas.svg', format='svg', dpi=1200)
+fig1.savefig(imdir+'/dl_empir_vs_dl_meas.svg', format='svg', dpi=1200)
+fig2.savefig(imdir+'/l_empir_vs_l_meas.svg', format='svg', dpi=1200)
+fig3.savefig(imdir+'/dl_model_vs_dl_meas.svg', format='svg', dpi=1200)
+fig4.savefig(imdir+'/l_model_vs_l_meas.svg', format='svg', dpi=1200)
 plt.show()

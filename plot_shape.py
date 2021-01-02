@@ -1,13 +1,14 @@
 from math_imports import *
 from plot_imports import *
 from setup_imports import *
-import pickle
+from facet_utils import load_data, setup_dir
 
+setup_dir(imdir)
 sc_inst = scaling_dist(a=0.0, name='scaling_dist')
-Areas, Per, Lens = pickle.load(open('facet.p','rb'))
-Shapes, Means, Times = pickle.load(open('props.p','rb'))
-Areas_w, Per_w, Lens_w = pickle.load(open('facet_watershed_rev.p','rb'))
-Shapes_w, Means_w, Times_w = pickle.load(open('props_watershed.p','rb'))
+Areas, Per, Lens = load_data('facet')
+Shapes, Means, Times = load_data('props')
+Areas_w, Per_w, Lens_w = load_data('facet_watershed')
+Shapes_w, Means_w, Times_w = load_data('props_watershed')
 
 # fitted a vs t
 fig, axes, cbax = fig_with_cbar((10,8), 1)
@@ -31,5 +32,5 @@ ax.set_ylim(0,3.5)
 set_axis_labels(ax, "$t$", "$a$", major, xticks=[0, 50, 100, 150, 200], yticks=[0, 1, 2, 3])
 set_cbar(fig, cbax, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], major)
 fig.tight_layout()
-fig.savefig('vector_images/a_vs_t.svg', format='svg', dpi=1200)
+fig.savefig(imdir+'/a_vs_t.svg', format='svg', dpi=1200)
 plt.show()

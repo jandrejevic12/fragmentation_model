@@ -1,15 +1,16 @@
 from math_imports import *
 from plot_imports import *
 from setup_imports import *
-import pickle
+from facet_utils import load_data, setup_dir
 
+setup_dir(imdir)
 cmap = matplotlib.cm.get_cmap("plasma")
 cnorm = matplotlib.colors.Normalize(vmin=0, vmax=1)
 markers = ['o','s','^','v']
-Areas, Per, Lens = pickle.load(open('facet.p','rb'))
-Shapes, Means, Times = pickle.load(open('props.p','rb'))
-Areas_w, Per_w, Lens_w = pickle.load(open('facet_watershed_rev.p','rb'))
-Shapes_w, Means_w, Times_w = pickle.load(open('props_watershed.p','rb'))
+Areas, Per, Lens = load_data('facet')
+Shapes, Means, Times = load_data('props')
+Areas_w, Per_w, Lens_w = load_data('facet_watershed')
+Shapes_w, Means_w, Times_w = load_data('props_watershed')
 
 # ax1: l_meas vs (1-delta)*t/(a+1)
 # ax2: l_model vs l_empir
@@ -49,7 +50,7 @@ set_cbar(fig3, cbax3, cmap, cnorm, "$\\tilde{\\Delta}$", [0.2,0.4,0.6,0.8], majo
 fig1.tight_layout()
 fig2.tight_layout()
 fig3.tight_layout()
-fig1.savefig('vector_images/l_meas_slope.svg', format='svg', dpi=1200)
-fig2.savefig('vector_images/l_model_vs_l_empir.svg', format='svg', dpi=1200)
-fig3.savefig('vector_images/s_vs_t.svg', format='svg', dpi=1200)
+fig1.savefig(imdir+'/l_meas_slope.svg', format='svg', dpi=1200)
+fig2.savefig(imdir+'/l_model_vs_l_empir.svg', format='svg', dpi=1200)
+fig3.savefig(imdir+'/s_vs_t.svg', format='svg', dpi=1200)
 plt.show()

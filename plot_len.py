@@ -1,8 +1,9 @@
 from math_imports import *
 from plot_imports import *
 from setup_imports import *
-import pickle
+from facet_utils import load_data, setup_dir
 
+setup_dir(imdir)
 len_inst = len_dist(a=0.0, name='len_dist')
 
 def at_fun(s, t0):
@@ -20,8 +21,8 @@ def at_fun(s, t0):
     return a, t
 
 # Plot an example from manual data
-Areas, Per, Lens = pickle.load(open('facet.p','rb'))
-Shapes, Means, Times = pickle.load(open('props.p','rb'))
+Areas, Per, Lens = load_data('facet')
+Shapes, Means, Times = load_data('props')
 exp = 39
 delta = 0.045
 t = 2
@@ -39,5 +40,5 @@ ax.set_ylim(7e-5,2e3)
 ax.set_xlim(2e-5,1e1)
 set_axis_labels(ax, "$r$", "$f_R(r)$", major, xticks=[1e-3, 1e-1, 1e1], yticks=[1e-3, 1e-1, 1e1, 1e3])
 fig.tight_layout()
-plt.savefig('vector_images/len_plot_manual_'+str(exp)+'_'+str(t)+'.svg', format='svg', dpi=1200)
+plt.savefig(imdir+'/len_plot_manual_'+str(exp)+'_'+str(t)+'.svg', format='svg', dpi=1200)
 plt.show()
