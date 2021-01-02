@@ -1,14 +1,12 @@
 ## Supporting code for "A model for the fragmentation kinetics of crumpled thin sheets"
 Jovana Andrejevic, Lisa M. Lee, Shmuel M. Rubinstein, and Chris H. Rycroft
 
-[![DOI](https://zenodo.org/badge/314614182.svg)](https://zenodo.org/badge/latestdoi/314614182)
-
 #### Requirements
 Please refer to ```requirements.txt``` for the Python version and package versions used. \
 Linking to [LAPACK](http://www.netlib.org/lapack/) library is needed for running the simulation test written in C++.
 
-### Data Availability
-Data collected for the study of [*Gottesman et al.*][state_var] was initially processed to delineate individual facets and their properties, and the resulting data structures saved in a separate file for analysis. The post-processed data is provided as ```facet_data.zip``` and may be downloaded to run all analysis scripts in this repository. The raw data from the work of [*Gottesman et al.*][state_var] can be provided from the authors upon reasonable request.
+#### Data Availability
+Data collected for the study of [*Gottesman et al.*][state_var] was initially processed to delineate individual facets and their properties, and the resulting data structures saved in a separate file for analysis. The post-processed data is provided as ```facet_data.zip``` and may be unzipped to run all **analysis** scripts in this repository. The raw data from the work of [*Gottesman et al.*][state_var] required for **processing** can be provided from the authors upon reasonable request.
 
 #### Imports
 - ```math_imports.py``` - Import special math functions and define custom distribution classes.
